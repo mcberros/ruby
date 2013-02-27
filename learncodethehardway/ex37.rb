@@ -4,7 +4,7 @@ Keywords
 * alias
 * and
 * BEGIN
-begin
+* begin
 * break
 * case
 * class
@@ -15,7 +15,7 @@ begin
 * elsif
 * END
 * end
-ensure
+* ensure
 * false
 * for
 * if
@@ -23,25 +23,79 @@ ensure
 module
 * next
 nil
-not
-or
-redo
-rescue
-retry
+* not
+* or
+* redo
+* rescue
+* retry
 return
 self
 * super
 * then
 * true
 undef
-unless
-until
+* unless
+* until
 * when
-while
-yield
+* while
+* yield
 
 =end
 
+def bloque_begin
+  x=1
+  y=0
+  
+  begin
+    z=x/y
+  rescue => exception
+    y=1
+    puts exception.to_s
+    #retry
+  else
+    puts "z=#{z}"
+  ensure
+    puts "x=#{x}, y=#{y}"
+  end
+end
+
+bloque_begin
+
+def hola_tres
+  yield
+  yield
+  yield
+end
+hola_tres { puts "hola" }
+
+def prueba_or_unless_until_while
+  x=0
+  while true
+    if x==0
+      puts x
+      x +=1
+    elsif x>0 or x<3
+      x +=1
+    else
+      break
+    end
+  end
+
+  (0..3).each do |x|
+    unless x==3
+      puts x
+    end
+  end
+
+  x=0
+  until x==3
+    puts x
+    x += 1
+  end
+
+end
+
+prueba_or_unless_until_while
 
 class Papa
   def saluda
@@ -104,11 +158,9 @@ def prueba
       when 3
         puts "#{x}"
       else
-        break
-      
+        break  
     end
   end
-
 end
 
 alias alias_prueba prueba
@@ -120,7 +172,6 @@ def suma_tres_numeros
     n ** 2
   end
   array.inspect
-
 end
 
 puts suma_tres_numeros
